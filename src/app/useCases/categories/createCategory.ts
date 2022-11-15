@@ -10,6 +10,10 @@ export async function createCategory(req: Request, res: Response) {
       return res.status(400).json({ message: 'Name is required to create the category!' });
     }
 
+    if (!icon || typeof icon !== 'string') {
+      return res.status(400).json({ message: 'Icon is required to create the category!' });
+    }
+
     const category = await Category.create({ name, icon });
 
     res.status(201).json({ message: 'Category created sucessfully!', category });
